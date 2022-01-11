@@ -8,10 +8,10 @@ function App() {
 
   return (
     <>
-    <GlobalStyle />
-    <Header />
-    <Dashboard />
-    <NewTaskModal />
+      <GlobalStyle />
+      <Header />
+      <Dashboard />
+      <NewTaskModal />
     </>
   );
 }

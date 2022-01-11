@@ -6,16 +6,20 @@ import closeImg from '../../assets/close.svg';
 
 import { useModal } from '../../contexts/Modal/modalContext';
 
-import { taskState } from '../../enums/enum';
+import { findState, taskState } from '../../enums/enum';
+
+import { useTask } from '../../contexts/Task/taskContext';
+
+import { task } from '../../types/type';
 
 import { Container } from './styles';
-
-import { capitalize } from 'lodash';
 
 Modal.setAppElement('#root');
 
 export function NewTaskModal() {
+
   const { isNewTaskModalOpen, handleCloseNewTaskModal } = useModal();
+  const { setTasks, tasks } = useTask();
 
   const formElement = useRef<HTMLFormElement>(null);
 
@@ -23,17 +27,22 @@ export function NewTaskModal() {
     e.preventDefault();
     if(formElement.current) {
       const form = formElement?.current;
-      const data = {
+      console.log()
+      const stateValue: taskState = findState(form['state'].value);
+
+      const data: task = {
         title: form['titulo'].value,
-        text: form['description'].value
+        description: form['description'].value,
+        state: stateValue
       };
       
-      console.log(data);
+      setTasks([...tasks, data]);
+      handleCloseNewTaskModal();
     }
   }
 
-  const options = Object.values(taskState).map(
-    (value: string) => capitalize(value));
+  const options = Object.entries(taskState).map(
+    (value: [string, taskState]) => value);
     
   return (
     <Modal 
@@ -71,7 +80,7 @@ export function NewTaskModal() {
         >
           {
             options.map(option => 
-              <option key={option} value={option}>{option}</option>
+              <option key={option[0]} value={option[0]}>{option[1]}</option>
             )
           }
         </select>
