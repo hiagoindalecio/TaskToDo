@@ -7,7 +7,7 @@ export const Container = styled.form`
     margin-bottom: 2rem;
   }
 
-  input {
+  input, select {
     width: 100%;
     padding: 0 1.5rem;
     height: 4rem;
@@ -24,6 +24,10 @@ export const Container = styled.form`
     }
 
     & + input {
+      margin-top: 1rem;
+    }
+
+    & + select {
       margin-top: 1rem;
     }
   }

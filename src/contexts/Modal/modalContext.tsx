@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useState} from 'react';
 
-import { NewTaskModalContextData } from '../../types/types';
+import { NewTaskModalContextData } from '../../types/type';
 
 const NewTaskModalContext = createContext<NewTaskModalContextData>({} as NewTaskModalContextData);
 

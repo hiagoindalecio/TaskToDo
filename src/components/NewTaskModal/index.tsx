@@ -1,17 +1,21 @@
-import { FormEvent, useEffect, useRef } from 'react';
+import { FormEvent, useRef } from 'react';
 
 import Modal from 'react-modal';
 
 import closeImg from '../../assets/close.svg';
 
+import { useModal } from '../../contexts/Modal/modalContext';
+
+import { taskState } from '../../enums/enum';
+
 import { Container } from './styles';
 
-import { useModal } from '../../contexts/Modal/modalContext';
+import { capitalize } from 'lodash';
 
 Modal.setAppElement('#root');
 
 export function NewTaskModal() {
-  const { isNewTaskModalOpen, handleCloseNewTaskModal, handleOpenNewTaskModal } = useModal();
+  const { isNewTaskModalOpen, handleCloseNewTaskModal } = useModal();
 
   const formElement = useRef<HTMLFormElement>(null);
 
@@ -21,12 +25,15 @@ export function NewTaskModal() {
       const form = formElement?.current;
       const data = {
         title: form['titulo'].value,
-        text: form['text'].value
+        text: form['description'].value
       };
       
       console.log(data);
     }
   }
+
+  const options = Object.values(taskState).map(
+    (value: string) => capitalize(value));
     
   return (
     <Modal 
@@ -54,9 +61,20 @@ export function NewTaskModal() {
         />
         <input 
           type="text"
-          placeholder='text'
-          name='text'
+          placeholder='Descrição'
+          name='description'
         />
+
+        <select
+          placeholder='Selecione'
+          name='state'
+        >
+          {
+            options.map(option => 
+              <option key={option} value={option}>{option}</option>
+            )
+          }
+        </select>
 
         <button type="submit">
           Cadastrar

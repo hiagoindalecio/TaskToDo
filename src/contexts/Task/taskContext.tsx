@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useState} from 'react';
 
-import { task, TaskContextData } from '../../types/types';
+import { task, TaskContextData } from '../../types/type';
 
 const TaskContext = createContext<TaskContextData>({} as TaskContextData);
 

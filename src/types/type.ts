@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from "react"
 
+import { taskState } from "../enums/enum"
+
 export type TaskContextData = {
   tasks: task[],
   setTasks: Dispatch<SetStateAction<task[]>>
@@ -13,12 +15,6 @@ export type NewTaskModalContextData = {
 
 export type task = {
   title: string,
-  text: string,
+  description: string,
   state: taskState
-}
-
-export enum taskState {
-  "To Do" = 1,
-  "Doing" = 2,
-  "Backlog" = 3
 }

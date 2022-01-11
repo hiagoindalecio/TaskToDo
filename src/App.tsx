@@ -1,7 +1,8 @@
 import { Header } from "./components/Header";
-import { GlobalStyle } from "./styles/global";
-
 import { NewTaskModal } from './components/NewTaskModal';
+import { Dashboard } from "./components/Dashboard";
+
+import { GlobalStyle } from "./styles/global";
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
     <>
     <GlobalStyle />
     <Header />
+    <Dashboard />
     <NewTaskModal />
     </>
   );
