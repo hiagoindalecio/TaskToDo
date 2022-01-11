@@ -34,4 +34,8 @@ export const Container = styled.div`
   .backlog {
     background: ${transparentize(0.9, '#33cc95')};
   }
+
+  span {
+    font-size: 10px;
+  }
 `;
